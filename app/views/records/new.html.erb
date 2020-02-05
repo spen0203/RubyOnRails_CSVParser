@@ -1,0 +1,82 @@
+##
+#Author: Curtis Spence
+<h1>New Record</h1>
+<p>Find me in app/views/csv_parser/new.html.erb</p>
+
+
+<%= form_for(@record) do |f| %>
+    <table>
+    <tr>
+    <th> REF_DATE </th>
+    <td> <%= f.text_field(:REF_DATE) %> </td>
+    </tr>
+    <tr>
+    <th> GEO </th>
+    <td> <%= f.text_field(:GEO) %> </td>
+    </tr>
+    <tr>
+    <th> DGUID </th>
+    <td> <%= f.text_field(:DGUID) %> </td>
+    </tr>
+    <tr>
+    <th> Sex </th>
+    <td> <%= f.text_field(:Sex) %> </td>
+    </tr>
+    <tr>
+    <th> Age group </th>
+    <td> <%= f.text_field(:Age_group) %> </td>
+    </tr>
+    <tr>
+    <th> Student response </th>
+    <td> <%= f.text_field(:Student_response) %> </td>
+    </tr>
+    <tr>
+    <th> UOM </th>
+    <td> <%= f.text_field(:UOM) %> </td>
+    </tr>
+    <tr>
+    <th> UOM_ID </th>
+    <td> <%= f.text_field(:UOM_ID) %> </td>
+    </tr>
+    <tr>
+    <th> SCALAR_FACTOR </th>
+    <td> <%= f.text_field(:SCALAR_FACTOR) %> </td>
+    </tr>
+    <tr>
+    <th> SCALAR_ID </th>
+    <td> <%= f.text_field(:SCALAR_ID) %> </td>
+    </tr>
+    <tr>
+    <th> VECTOR </th>
+    <td> <%= f.text_field(:VECTOR) %> </td>
+    </tr>
+    <tr>
+    <th> COORDINATE </th>
+    <td> <%= f.text_field(:COORDINATE) %> </td>
+    </tr>
+    <tr>
+    <th> VALUE </th>
+    <td> <%= f.text_field(:VALUE) %> </td>
+    </tr>
+    <tr>
+    <th> STATUS </th>
+    <td> <%= f.text_field(:STATUS) %> </td>
+    </tr>
+    <tr>
+    <th> SYMBOL </th>
+    <td> <%= f.text_field(:SYMBOL) %> </td>
+    </tr>
+    <tr>
+    <th> TERMINATED </th>
+    <td> <%= f.text_field(:TERMINATED) %> </td>
+    </tr>
+    <tr>
+    <th> DECIMALS </th>
+    <td> <%= f.text_field(:DECIMALS) %> </td>
+    </tr>
+    	<%= f.submit("Create Record", :class => 'btn btn-warning') %>						
+    <tr>
+
+    </tr>
+    </table>
+    <% end %>

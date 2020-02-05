@@ -1,0 +1,38 @@
+<!--Author: Curtis Spence -->
+<h1>Delete Record: </h1>
+<div class="row">
+    <div class="col-sm-2">
+
+    </div>
+    <div class="col-sm-4">
+        <b>ID:</b>  <%= @record.id %> <br />
+        <b>REF_DATE:</b> <%= @record.REF_DATE %> <br />
+        <b>GEO:</b> <%= @record.GEO %> <br />
+        <b>DGUID:</b> <%= @record.DGUID %> <br />
+        <b>Sex:</b> <%= @record.Sex %> <br />
+        <b>Age_group:</b> <%= @record.Age_group %> <br />
+        <b>Student_response:</b> <%= @record.Student_response %> <br />
+        <b>UOM:</b> <%= @record.UOM %> <br />	
+        <b>UOM_ID:</b>	<%= @record.UOM_ID %> <br />
+        <b>SCALAR_FACTOR:</b> <%= @record.SCALAR_FACTOR %> <br />	
+        <b>SCALAR_ID:</b> <%= @record.SCALAR_ID %> <br />
+        <b>VECTOR:</b> <%= @record.VECTOR %> <br />	
+        <b>COORDINATE:</b> <%= @record.COORDINATE %> <br />	
+        <b>VALUE:</b> <%= @record.VALUE %> <br />
+        <b>STATUS:</b> <%= @record.STATUS %> <br />
+        <b>SYMBOL:</b> <%= @record.SYMBOL %> <br />
+        <b>TERMINATED:</b> <%= @record.TERMINATED %> <br />
+        <b>DECIMALS:</b> <%= @record.DECIMALS %> <br />
+    </div>
+    <div class="col-sm-4">
+        <%= form_for(@record,:method =>'delete') do |f| %>
+            <p> Ya sure?  Delete </p>
+            <div class="form-buttons">
+                <%= f.submit("Delete Record", :class => 'btn btn-danger') %>
+            </div>
+        <% end %>
+    </div>
+    <div class="col-sm-2">
+
+    </div>
+</div>

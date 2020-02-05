@@ -1,0 +1,136 @@
+<!--Author: Curtis Spence -->
+<head>
+        <style>
+#records {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#records td, #records th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+
+}
+
+#records tr:nth-child(even){background-color: #f2f2f2;}
+
+#records tr:hover {background-color: #ddd;}
+
+#records th {
+  padding: 10px;
+  text-align: center;
+  background-color: #4CAF50;
+  color: white;
+}
+        </style>
+</head>
+<div style="display:inline-block;">
+        <%=  link_to("Display All", records_path(),  :class => 'btn btn-warning')%>
+</div>
+<div style="display:inline-block;">
+        <%=  link_to("New Record", new_record_path(),  :class => 'btn btn-warning')%>
+</div>
+<div style="display:inline-block;">
+        <%= button_to "Load Records", records_refresh_path(), :class => "btn btn-warning "  %>
+</div>
+<div style="display:inline-block;">
+        <%= button_to "Delete All Records", records_deleteAll_path(), :class => "btn btn-warning "  %>
+</div>
+
+<h1>Custom Sorting</h1>
+<p>current settings<br/> Field: <%= @sortField %><br/>  Direction: <%= @sortType %><br/> Limit: <%= @limit %> </p>
+<% if @sortedSet.exists? %>
+        <div class="row">
+        </div>
+        <div class="row" style="padding-top:1em;padding-bottom:1em;">
+        <%=  form_with(url: records_sorting_path, method: "post") do %>
+
+        <div class="col-sm-2">
+                <strong>Sort On:</strong>
+                <%= select_tag(:sortField, options_for_select([ "id", "REF_DATE", "GEO", "DGUID", "Sex", "Age_group", "Student_response", "UOM", "UOM_ID", "SCALAR_FACTOR", "SCALAR_ID", "VECTOR", "COORDINATE", "VALUE", "STATUS", "SYMBOL", "TERMINATED", "DECIMALS"  ], "id") )%>
+        </div>
+        <div class="col-sm-2">
+                <strong>Sort Direction:</strong>
+                <%= select_tag(:sortType, options_for_select([ "Ascending", "Decending"  ], "Ascending") )%>
+        </div>
+        <div class="col-sm-2">
+                <strong>Sort Limit</strong>
+                <%= number_field_tag(:sortNum, 10, options = {min: 1}) %>
+        </div>
+        <div class="col-sm-2">
+                <%= submit_tag("Sort", :class => 'btn btn-lg btn-success' )  %>  
+        </div>
+        <div class="col-sm-4">
+        </div>
+        <% end %>
+
+</div>
+<hr>
+<h2>Custom Records Overview</h2>
+<div class="row">
+        <div class="col-sm-6">
+                <%= pie_chart @sortedSet.group(@sortField).count %> <!--calls the kickchart API: chart type, dataset : returns the chart -->
+        </div>
+        <div class="col-sm-6">
+                <%= column_chart @sortedSet.group(@sortField).count %>
+        </div>
+    
+</div>
+<hr>
+<h2>Custom Records All</h2>
+  <table id="records">
+        <tr>
+                <th><b> Controls</b></th>
+                <th> refDate </th>
+                <th> geo </th>
+                <th> dguid </th>
+                <th> sex </th>
+                <th> ageGroup </th>
+                <th> student Response</th>
+                <th> uom</th>
+                <th> uomID</th>
+                <th> scalarFactor </th>
+                <th> scalarID </th>
+                <th> vector </th>
+                <th> coordinate </th>
+                <th> value </th>
+                <th> status </th>
+                <th> symbol </th>
+                <th> terminated </th>
+                <th> decimals </th>
+        </tr><br>
+        <% @sortedSet.each do | record | %>
+        <tr>
+                <td>
+                <%=  link_to("Edit", edit_record_path(record), :class => 'action update') %>
+                <%=  link_to("Delete", delete_record_path(record),  :class => 'action delete')%>
+                </td>
+                <td> <%=  record.REF_DATE %></td>
+                <td> <%=  record.GEO %></td>
+                <td> <%=  record.DGUID %></td>
+                <td> <%=  record.Sex %></td>
+                <td> <%=  record.Age_group %></td>
+                <td> <%=  record.Student_response %></td>
+                <td> <%=  record.UOM %></td>
+                <td> <%=  record.UOM_ID %></td>
+                <td> <%=  record.SCALAR_FACTOR %></td>
+                <td> <%=  record.SCALAR_ID %></td>
+                <td> <%=  record.VECTOR %> </td>
+                <td> <%=  record.COORDINATE %></td>
+                <td> <%=  record.VALUE %></td>
+                <td> <%=  record.STATUS %></td>
+                <td> <%=  record.SYMBOL %></td>
+                <td> <%=  record.TERMINATED %></td>
+                <td> <%=  record.DECIMALS %></td>
+        </tr>
+        
+        <% end %>
+
+
+        </table>
+<% else %>
+        <h2> unable to load sortedSet! </h2>
+<% end %>
+
