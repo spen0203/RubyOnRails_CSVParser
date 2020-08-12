@@ -23,7 +23,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 
 #loads chart graphin api
-gem 'chartkick', '~> 3.0', '>= 3.0.1'
+gem 'chartkick', '~> 3.4'
 gem 'groupdate', '~> 4.1'
 
 # Use Active Storage variant
